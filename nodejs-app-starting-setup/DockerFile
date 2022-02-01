@@ -1,0 +1,11 @@
+FROM node
+
+WORKDIR /app
+
+COPY . /app
+# COPY . . Copies the relative path to /app since it is the WD. Less verbose
+RUN npm install
+
+EXPOSE 80
+
+CMD ["node," "server.js"]
