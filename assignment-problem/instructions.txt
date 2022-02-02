@@ -16,3 +16,14 @@ clean up all created images.
 
 6) Run new containers based on the re-built images, ensuring that the containers
 are removed automatically when stopped.
+
+
+
+docker build node-app/. -t server:latest
+docker build python-app/. -t bmi:latest
+
+docker run -p 5000:3000 -d --rm --name node-server server:latest
+docker run -ti -d --rm --name bmi-python bmi:latest
+
+docker stop node-server
+docker stop bmi-python
