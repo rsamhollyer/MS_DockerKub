@@ -27,3 +27,5 @@ docker run -ti -d --rm --name bmi-python bmi:latest
 
 docker stop node-server
 docker stop bmi-python
+
+docker rmi -f server:latest bmi:latest
