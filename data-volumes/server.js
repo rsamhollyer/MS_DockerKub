@@ -32,8 +32,8 @@ app.post('/create', async (req, res) => {
     const finalFilePath = path.join(__dirname, 'feedback', `${adjTitle}.txt`);
 
     await fs.writeFile(tempFilePath, content);
-    exists(finalFilePath, async exists => {
-        if (exists) {
+    exists(finalFilePath, async exist => {
+        if (exist) {
             res.redirect('/exists');
         } else {
             await fs.copyFile(tempFilePath, finalFilePath);
