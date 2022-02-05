@@ -2,12 +2,17 @@ FROM node
 
 WORKDIR /app
 
-COPY package.json /app
+COPY package.json .
 
 RUN npm install
 
-COPY . /app
+COPY . .
 
-EXPOSE 80
+ENV PORT 80
 
-CMD ["npm","start"]
+EXPOSE $PORT
+
+
+# VOLUME [ "/app/node_modules" ]
+
+CMD [ "npm", "start" ]
