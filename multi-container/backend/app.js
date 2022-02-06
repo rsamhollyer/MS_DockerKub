@@ -84,8 +84,12 @@ app.delete('/goals/:id', async (req, res) => {
     }
 });
 
+/* @NOTE
+ * When using Docker in linux, the host.docker.internal requires the extra flag
+ * --add-host=host.docker.internal:host-gateway to the docker run command.
+ */
 mongoose.connect(
-    'mongodb://localhost:27017/course-goals',
+    'mongodb://host.docker.internal:27017/course-goals',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
