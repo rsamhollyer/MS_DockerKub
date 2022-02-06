@@ -3,7 +3,6 @@ const path = require('path');
 
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
 const Goal = require('./models/goal');
@@ -17,7 +16,7 @@ const accessLogStream = fs.createWriteStream(
 
 app.use(morgan('combined', { stream: accessLogStream }));
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -88,8 +87,9 @@ app.delete('/goals/:id', async (req, res) => {
  * When using Docker in linux, the host.docker.internal requires the extra flag
  * --add-host=host.docker.internal:host-gateway to the docker run command.
  */
+
 mongoose.connect(
-    'mongodb://sam:password@mongodb:27017/course-goals?authSource=admin',
+    `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASS}@mongodb:27017/course-goals?authSource=admin`,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
