@@ -89,7 +89,7 @@ app.delete('/goals/:id', async (req, res) => {
  * --add-host=host.docker.internal:host-gateway to the docker run command.
  */
 mongoose.connect(
-    'mongodb://mongodb:27017/course-goals',
+    'mongodb://sam:password@mongodb:27017/course-goals?authSource=admin',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
