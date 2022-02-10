@@ -1,6 +1,7 @@
 version: '3.8'
 services:
     mongodb:
+        container_name: 'mongo_dev'
         image: 'mongo' # In docker-compose, running docker-compose down will act like --rm
         volumes:
             - data:/data/db
