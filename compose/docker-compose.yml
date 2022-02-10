@@ -15,9 +15,43 @@ services:
         #     - goals-net
 
         # You don't need to specify a network necessarily, because docker will add the services to a network created automatically
-    # backend:
+    backend:
+        container_name: 'backend'
 
-    # frontend:
+        # Long form example for build
+        # build:
+        #     context: ./backend # Set location where everything the Dockerfile needs exists
+        #     dockerfile: Dockerfile-dev
+        #     args:
+        #       some-arg: 1
+        #       another-arg: 2
+        #       etc...
+
+        build: ./backend # looks for a Dockerfile in this location
+        ports:
+            - '80:80'
+            # - More ports like this
+        volumes:
+            - logs:/app/logs
+            - ./backend:/app
+            - /app/node_modules
+        env_file:
+            - ./env/back.env
+        depends_on:
+            - mongodb
+            # - ...
+    frontend:
+        container_name: 'frontend'
+        build: ./frontend
+        ports:
+            - '3000:3000'
+        volumes:
+            - ./frontend/src:/app/src
+        stdin_open: true
+        tty: true
+        depends_on:
+            - backend
 
 volumes:
     data: # This is the format for a named volume, like in the mongo service. Anon volumes or bind-mounts do NOT need to be specifed here
+    logs:
