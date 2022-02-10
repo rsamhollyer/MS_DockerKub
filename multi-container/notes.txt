@@ -3,7 +3,7 @@ docker network create network-goals
 
 To run react:
 
-docker run --name react --rm -p 3000:3000 -it react:latest
+ docker run --name front -v /home/sam/.local/samsprojects/MS_DockerKub/multi-container/frontend/src:/app/src --rm -p 3000:3000 -ti react:latest        
 
 
 To run backend:
