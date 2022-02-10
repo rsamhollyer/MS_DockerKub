@@ -1,7 +1,22 @@
 version: '3.8'
 services:
-    image:
     mongodb:
+        image: 'mongo' # In docker-compose, running docker-compose down will act like --rm
+        volumes:
+            - data:/data/db
+        # environment:
+        # MONGO_INITDB_ROOT_USERNAME: 'max'
+        # - MONGO_INITDB_ROOT_USERNAME=max
+        env_file:
+            - ./env/mong.env
 
-    backend:
-    frontend:
+        # networks:
+        #     - goals-net
+
+        # You don't need to specify a network necessarily, because docker will add the services to a network created automatically
+    # backend:
+
+    # frontend:
+
+volumes:
+    data: # This is the format for a named volume, like in the mongo service. Anon volumes or bind-mounts do NOT need to be specifed here
