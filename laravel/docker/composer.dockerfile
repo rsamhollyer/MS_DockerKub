@@ -1,4 +1,4 @@
 FROM composer:latest
-USER ${UID}:${GID}
+USER 1000:1000
 WORKDIR /var/www/html
 ENTRYPOINT [ "composer","--ignore-platform-reqs" ]
