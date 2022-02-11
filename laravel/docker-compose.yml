@@ -7,7 +7,14 @@ services:
             - '8000:80'
         volumes:
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    # php:
+    php:
+        user: '${UID}:${GID}'
+        build:
+            context: ./docker
+            dockerfile: php.dockerfile
+        volumes:
+            - ./src:/var/www/html:delegated
+            # Improves performance because it won't write to host machine immediately
     # mysql:
     # composer:
     # artisan:
