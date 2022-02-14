@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 80
 
-CMD ["node", "app.js"]MhwYqqeJHpfMv2k
+CMD ["node", "app.js"]
