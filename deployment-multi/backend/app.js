@@ -4,6 +4,7 @@ const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 const Goal = require('./models/goal');
 
@@ -77,7 +78,8 @@ app.delete('/goals/:id', async (req, res) => {
 });
 
 mongoose.connect(
-    `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}:27017/course-goals?authSource=admin`,
+    `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}/${process.env.MONGODB_NAME}?retryWrites=true&w=majority`,
+    /* The course used Atlas,so this connection string will be changed to match what's being given by the Atlas server. But I'm only watching at this point */
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
