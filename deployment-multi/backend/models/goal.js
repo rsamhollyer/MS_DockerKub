@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const goalSchema = new Schema({
-  text: String
+    text: String,
 });
 
 const GoalModel = mongoose.model('Goal', goalSchema);
