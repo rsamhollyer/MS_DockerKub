@@ -1,12 +1,5 @@
 version: '3.8'
 services:
-    # ALL IN THE CLOUD NOW
-    # mongodb:
-    #   image: 'mongo'
-    #   volumes:
-    #     - data:/data/db
-    #   env_file:
-    #     - ./env/mongo.env
     backend:
         build: ./backend
         ports:
@@ -16,7 +9,13 @@ services:
             - /app/node_modules
         env_file:
             - ./env/backend.env
-        # depends_on:
-        #     - mongodb
-# volumes:
-#     data:
+    frontend:
+        build: ./frontend
+        ports:
+            - '3000:3000'
+        volumes:
+            - ./frontend/src:/app/src
+        stdin_open: true
+        tty: true
+        depends_on:
+            - backend
